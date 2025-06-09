@@ -9,8 +9,16 @@ from langchain.prompts import ChatPromptTemplate
 # Initialize the ChatGroq model
 #groq_api_key = st.secrets["GROQ_API_KEY"]
 groq_api_key = os.environ.get("GROQ_API_KEY")
+if not groq_api_key:
+    st.error("GROQ_API_KEY is not set. Please add it as an environment variable.")
+else:
+    model = ChatGroq(
+        temperature=0.8,
+        model="llama-3.3-70b-versatile",
+        groq_api_key=groq_api_key
+    )
 
-model = ChatGroq(temperature=0.8, model="llama-3.3-70b-versatile",groq_api_key=groq_api_key)
+#model = ChatGroq(temperature=0.8, model="llama-3.3-70b-versatile",groq_api_key=groq_api_key)
 # Streamlit app
 st.title("Market Analysis of Stock Price Chatbot")
 #Create a prompt template
