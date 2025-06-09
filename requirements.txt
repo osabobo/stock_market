@@ -1,12 +1,12 @@
-streamlit
-pandas
-numpy
-pandasai
-langchain
-langchain-core
-langchain-community
-langchain-groq
-python-dotenv
+langchain==0.2.11
+langchain-community==0.2.10
+langchain-core==0.2.26
+langchain-groq==0.1.9
+python-dotenv==1.0.1
+streamlit==1.37.0
+pandas==2.2.2
+numpy==1.24.4
+pandasai==1.5.5
 
 
 
