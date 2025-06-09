@@ -1,4 +1,4 @@
-web: streamlit run stockapp.py
+web: streamlit run app.py
 
 
 
