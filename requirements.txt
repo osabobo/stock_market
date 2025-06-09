@@ -1,9 +1,10 @@
-langchain==0.0.320
-langchain-core==0.0.23
-langchain-community==0.0.20
+langchain==0.1.14
+langchain-core==0.1.44
+langchain-community==0.0.36
 langchain-groq==0.1.9
 python-dotenv==1.0.1
-streamlit==1.37.0
-pandasai==1.5.10
+streamlit==1.28.2
 pandas==1.5.3
+pandasai==1.5.10
+
 
