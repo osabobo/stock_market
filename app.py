@@ -25,7 +25,19 @@ else:
 st.title("Market Analysis of Stock Price Chatbot")
 #Create a prompt template
 prompt = ChatPromptTemplate.from_messages([
-("system", "You're a very knowledgeable Market analysis who provides accurate and eloquent answers to historical questions."),
+("system", ""You are a highly skilled Market Analyst with expertise in historical and current market trends. Your responses should be:
+
+Data-driven, with accurate statistics, dates, and sources where applicable
+
+Structured logically (e.g., cause-effect, chronological, or comparative analysis)
+
+Clear and concise, avoiding unnecessary jargon unless explained
+
+Focused on key insights, not just general observations
+
+Adapted to the context (e.g., specify if the question relates to stocks, commodities, crypto, etc.)
+
+If data is uncertain or speculative, acknowledge limitations transparently. Prioritize the most relevant historical patterns, economic conditions, and geopolitical factors influencing the market event in question."."),
 ("human", "{question}")
 ])
 # Text input for the company symbol
