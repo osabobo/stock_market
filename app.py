@@ -8,11 +8,7 @@ from langchain.prompts import ChatPromptTemplate
 #os.environ['PANDASAI_API_KEY'] = "$2a$10$ejBcbjF2sOx4XaiHsGqMxOTutW/iu54/RpYefPHF8je7Vxz.BEHnq"
 # Initialize the ChatGroq model
 #groq_api_key = st.secrets["GROQ_API_KEY"]
-from PIL import Image
 
-image_path = "/opt/render/project/src/exports/charts/temp_chart.png"
-image = Image.open(image_path)
-st.image(image, caption="Generated Chart", use_column_width=True)
 groq_api_key = os.getenv("GROQ_API_KEY")  # ✅ Correct
 
 if not groq_api_key:
@@ -38,6 +34,8 @@ company_symbol = st.text_input("Enter the company symbol (e.g., AAPL):")
 if company_symbol:
     try:
         # Initialize the Yahoo Finance connector with the input symbol
+        chart_dir = "/opt/render/project/src/exports/charts"
+        os.makedirs(chart_dir, exist_ok=True)
         yahoo_connector = YahooFinanceConnector(company_symbol)
         df = SmartDataframe(yahoo_connector, config={"llm": model},description=prompt)
 
@@ -48,5 +46,11 @@ if company_symbol:
             # Get the chatbot's response
             response = df.chat(user_query)
             st.write(response)
+            chart_path = os.path.join(chart_dir, "temp_chart.png")
+            if os.path.exists(chart_path):
+                image = Image.open(chart_path)
+                st.image(image, caption="Generated Chart", use_column_width=True)
+            else:
+                st.info("No chart was generated.")
     except Exception as e:
         st.error(f"An error occurred: {e}")
