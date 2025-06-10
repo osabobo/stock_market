@@ -15,7 +15,7 @@ if not groq_api_key:
     st.error("GROQ_API_KEY is not set. Please add it as an environment variable.")
 else:
     model = ChatGroq(
-        temperature=0.8,
+        temperature=0.2,
         model="llama-3.3-70b-versatile",
         groq_api_key=groq_api_key
     )
@@ -34,8 +34,6 @@ company_symbol = st.text_input("Enter the company symbol (e.g., AAPL):")
 if company_symbol:
     try:
         # Initialize the Yahoo Finance connector with the input symbol
-        chart_dir = "/opt/render/project/src/exports/charts"
-        os.makedirs(chart_dir, exist_ok=True)
         yahoo_connector = YahooFinanceConnector(company_symbol)
         df = SmartDataframe(yahoo_connector, config={"llm": model},description=prompt)
 
@@ -46,11 +44,5 @@ if company_symbol:
             # Get the chatbot's response
             response = df.chat(user_query)
             st.write(response)
-            chart_path = os.path.join(chart_dir, "temp_chart.png")
-            if os.path.exists(chart_path):
-                image = Image.open(chart_path)
-                st.image(image, caption="Generated Chart", use_column_width=True)
-            else:
-                st.info("No chart was generated.")
     except Exception as e:
         st.error(f"An error occurred: {e}")
