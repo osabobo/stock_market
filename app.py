@@ -8,6 +8,11 @@ from langchain.prompts import ChatPromptTemplate
 #os.environ['PANDASAI_API_KEY'] = "$2a$10$ejBcbjF2sOx4XaiHsGqMxOTutW/iu54/RpYefPHF8je7Vxz.BEHnq"
 # Initialize the ChatGroq model
 #groq_api_key = st.secrets["GROQ_API_KEY"]
+from PIL import Image
+
+image_path = "/opt/render/project/src/exports/charts/temp_chart.png"
+image = Image.open(image_path)
+st.image(image, caption="Generated Chart", use_column_width=True)
 groq_api_key = os.getenv("GROQ_API_KEY")  # ✅ Correct
 
 if not groq_api_key:
