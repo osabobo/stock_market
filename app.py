@@ -7,8 +7,8 @@ from langchain.prompts import ChatPromptTemplate
 # Set your PandasAI API key
 #os.environ['PANDASAI_API_KEY'] = "$2a$10$ejBcbjF2sOx4XaiHsGqMxOTutW/iu54/RpYefPHF8je7Vxz.BEHnq"
 # Initialize the ChatGroq model
-groq_api_key = st.secrets["GROQ_API_KEY"]
-#groq_api_key = os.environ.get("GROQ_API_KEY")
+#groq_api_key = st.secrets["GROQ_API_KEY"]
+groq_api_key = os.environ.get("GROQ_API_KEY")
 if not groq_api_key:
     st.error("GROQ_API_KEY is not set. Please add it as an environment variable.")
 else:
